@@ -11,9 +11,11 @@ All our orbs will be released under the `mavenlink` namespace.
 
 ## mavenlink/git
 
-### shallow-checkout
+### checkout
 
-Minimize disk space and cache size when checking out source code.
+Git clones and fetches at a depth of 1.
+This minimizes disk space (and thus cache size) of source code.
+Note: invalidate source code caches when switching from unshallow to shallow git operations.
 
 ---
 
