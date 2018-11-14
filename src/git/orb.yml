@@ -2,17 +2,6 @@ version: 2.1
 
 description: |
   A set of tools for optimizing git operations in a workflow
-examples:
-  basic_commands:
-    description: "Examples uses git commands"
-    usage:
-      version: 2.1
-      orbs:
-        git: mavenlink/git@volatile
-      jobs:
-        build:
-          steps:
-            - git/checkout
 
 commands:
   checkout:
