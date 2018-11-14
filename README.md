@@ -17,6 +17,15 @@ Minimize disk space and cache size when checking out source code.
 
 ---
 
+## Contribute
+
+Useful commands:
+
+- `circleci orb create mavenlink/git`
+- `circleci orb validate src/git/orb.yml`
+- Development: `circleci orb publish src/git/orb.yml mavenlink/git@dev:0.0.0`
+- Production: `circleci orb publish src/git/orb.yml mavenlink/git@0.0.0`
+
 ## Resources
 
 - [Developing a brand new orb -- update to latest `master`](https://github.com/CircleCI-Public/config-preview-sdk/blob/8e6001785fe7a05c3c2941b8d1daf416ac114bc6/docs/inline-orbs.md)
