@@ -1,5 +1,10 @@
 version: 2.1
 
+executors:
+  base:
+    docker:
+      - image: debian:stretch
+
 workflows:
   schema-validations:
     jobs:
@@ -16,14 +21,18 @@ workflows:
 
 jobs:
   git/schema-validation:
+    executor: base
     steps:
       - echo 'Hello world!'
   git/expansion-testing:
+    executor: base
     steps:
       - echo 'Hello world!'
   git/runtime-testing:
+    executor: base
     steps:
       - echo 'Hello world!'
   git/integration-testing:
+    executor: base
     steps:
       - echo 'Hello world!'
