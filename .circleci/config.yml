@@ -20,19 +20,19 @@ workflows:
       - git/integration-testing
 
 jobs:
-  git/schema-validation:
+  git-schema-validation:
     executor: base
     steps:
       - echo 'Hello world!'
-  git/expansion-testing:
+  git-expansion-testing:
     executor: base
     steps:
       - echo 'Hello world!'
-  git/runtime-testing:
+  git-runtime-testing:
     executor: base
     steps:
       - echo 'Hello world!'
-  git/integration-testing:
+  git-integration-testing:
     executor: base
     steps:
       - echo 'Hello world!'
