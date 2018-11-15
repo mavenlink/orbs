@@ -1,0 +1,29 @@
+version: 2.1
+
+workflows:
+  schema-validations:
+    jobs:
+      - git/schema-validation
+  expansion-testing:
+    jobs:
+      - git/expansion-testing
+  runtime-testing:
+    jobs:
+      - git/runtime-testing
+  integration-testing:
+    jobs:
+      - git/integration-testing
+
+jobs:
+  git/schema-validation:
+    steps:
+      - echo 'Hello world!'
+  git/expansion-testing:
+    steps:
+      - echo 'Hello world!'
+  git/runtime-testing:
+    steps:
+      - echo 'Hello world!'
+  git/integration-testing:
+    steps:
+      - echo 'Hello world!'
