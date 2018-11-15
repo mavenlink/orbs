@@ -8,16 +8,16 @@ executors:
 workflows:
   schema-validations:
     jobs:
-      - git/schema-validation
+      - git-schema-validation
   expansion-testing:
     jobs:
-      - git/expansion-testing
+      - git-expansion-testing
   runtime-testing:
     jobs:
-      - git/runtime-testing
+      - git-runtime-testing
   integration-testing:
     jobs:
-      - git/integration-testing
+      - git-integration-testing
 
 jobs:
   git-schema-validation:
