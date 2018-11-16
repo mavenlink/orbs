@@ -1,9 +1,7 @@
 version: 2.1
 
-executors:
-  base:
-    docker:
-      - image: debian:stretch
+orbs:
+  cli: circleci/circleci-cli@0.1.1
 
 workflows:
   schema-validations:
@@ -21,18 +19,18 @@ workflows:
 
 jobs:
   git-schema-validation:
-    executor: base
+    executor: cli/default
     steps:
       - run: circleci orb validate src/git/orb.yml
   git-expansion-testing:
-    executor: base
+    executor: cli/default
     steps:
       - run: echo 'Hello world!'
   git-runtime-testing:
-    executor: base
+    executor: cli/default
     steps:
       - run: echo 'Hello world!'
   git-integration-testing:
-    executor: base
+    executor: cli/default
     steps:
       - run: echo 'Hello world!'
