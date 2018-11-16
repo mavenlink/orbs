@@ -23,7 +23,7 @@ jobs:
   git-schema-validation:
     executor: base
     steps:
-      - run: echo 'Hello world!'
+      - run: circleci orb validate src/git/orb.yml
   git-expansion-testing:
     executor: base
     steps:
