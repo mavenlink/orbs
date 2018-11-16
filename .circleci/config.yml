@@ -11,6 +11,9 @@ workflows:
       - git-publish-sha:
           requires:
             - git-schema-validation
+      - git-integration-test:
+          requires:
+            - git-publish-sha
 
 jobs:
   git-schema-validation:
@@ -27,3 +30,8 @@ jobs:
           orb-path: src/git/orb.yml
           orb-ref: mavenlink/git@dev:$CIRCLE_SHA1
           token-variable: $ORB_PUBLISHING_TOKEN
+  git-integration-test:
+    executor: cli/default
+    steps:
+      - checkout
+      - run: circleci config process src/git/config.yml
