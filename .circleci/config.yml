@@ -32,7 +32,7 @@ jobs:
           token-variable: $ORB_PUBLISHING_TOKEN
   git-integration-test:
     machine:
-      image: circleci/classic:latest
+      image: circleci/classic:edge
     steps:
       - checkout
       - run: sed -i -e 's/$CIRCLE_SHA1/'$CIRCLE_SHA1'/g' src/git/config.yml
