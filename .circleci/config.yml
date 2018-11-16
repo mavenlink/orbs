@@ -12,4 +12,5 @@ jobs:
   git-schema-validation:
     executor: cli/default
     steps:
+      - checkout
       - run: circleci orb validate src/git/orb.yml
