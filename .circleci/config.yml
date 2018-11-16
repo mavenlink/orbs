@@ -7,30 +7,9 @@ workflows:
   schema-validations:
     jobs:
       - git-schema-validation
-  expansion-testing:
-    jobs:
-      - git-expansion-testing
-  runtime-testing:
-    jobs:
-      - git-runtime-testing
-  integration-testing:
-    jobs:
-      - git-integration-testing
 
 jobs:
   git-schema-validation:
     executor: cli/default
     steps:
       - run: circleci orb validate src/git/orb.yml
-  git-expansion-testing:
-    executor: cli/default
-    steps:
-      - run: echo 'Hello world!'
-  git-runtime-testing:
-    executor: cli/default
-    steps:
-      - run: echo 'Hello world!'
-  git-integration-testing:
-    executor: cli/default
-    steps:
-      - run: echo 'Hello world!'
