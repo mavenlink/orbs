@@ -31,12 +31,11 @@ jobs:
           orb-ref: mavenlink/git@dev:$CIRCLE_SHA1
           token-variable: $ORB_PUBLISHING_TOKEN
   git-integration-test:
-    executor: cli/default
+    machine: true
     steps:
       - checkout
       - run: sed -i -e 's/$CIRCLE_SHA1/'$CIRCLE_SHA1'/g' src/git/config.yml
       - run: circleci config process src/git/config.yml
       - run: mkdir tmp-config-src
-      - setup_remote_docker
       - orb-tools/local-test-build:
           test-config-location: src/git/config.yml
