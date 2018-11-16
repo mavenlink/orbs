@@ -26,3 +26,4 @@ jobs:
       - orb-tools/publish:
           orb-path: src/git/orb.yml
           orb-ref: mavenlink/git@dev:$CIRCLE_SHA1
+          token-variable: $ORB_PUBLISHING_TOKEN
