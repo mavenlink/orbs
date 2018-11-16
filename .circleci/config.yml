@@ -5,9 +5,12 @@ orbs:
   orb-tools: circleci/orb-tools@2.0.2
 
 workflows:
-  schema-validations:
+  git:
     jobs:
       - git-schema-validation
+      - git-publish-sha:
+          requires:
+            - git-schema-validation
 
 jobs:
   git-schema-validation:
@@ -16,3 +19,10 @@ jobs:
       - checkout
       - orb-tools/validate:
           orb-path: src/git/orb.yml
+  git-publish-sha:
+    executor: cli/default
+    steps:
+      - checkout
+      - orb-tools/publish:
+          orb-path: src/git/orb.yml
+          orb-ref: mavenlink/git@dev:$CIRCLE_SHA1
