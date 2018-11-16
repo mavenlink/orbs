@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   cli: circleci/circleci-cli@0.1.1
+  orb-tools: circleci/orb-tools@2.0.2
 
 workflows:
   schema-validations:
@@ -13,4 +14,5 @@ jobs:
     executor: cli/default
     steps:
       - checkout
-      - run: circleci orb validate src/git/orb.yml
+      - orb-tools/validate:
+          orb-path: src/git/orb.yml
