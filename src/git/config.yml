@@ -6,7 +6,7 @@ orbs:
 executors:
   base:
     docker:
-      - image: debian:stretch
+      - image: docker:stable-git
 
 jobs:
   build:
