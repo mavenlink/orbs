@@ -32,7 +32,7 @@ jobs:
           token-variable: $ORB_PUBLISHING_TOKEN
   git-integration-test:
     machine:
-      image: circleci/classic:edge
+      image: circleci/classic:latest
     steps:
       - cli/install
       - checkout
