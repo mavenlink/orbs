@@ -15,4 +15,7 @@ jobs:
       - checkout
       - run: ssh-add ~/project/.ssh/id_rsa
       - git/checkout
-      - run: test $(git log --pretty=oneline | wc -l) -eq 1
+      - run: cd /home/app/current && test $(git log --pretty=oneline | wc -l) -eq 1
+      - git/checkout:
+          repo_path: /home/some/other/path
+      - run: cd /home/some/other/path && test $(git log --pretty=oneline | wc -l) -eq 1

@@ -5,6 +5,10 @@ description: |
 
 commands:
   checkout:
+    parameters:
+      repo_path:
+        default: /home/app/current
+        type: string
     steps:
       - run:
           name: Set up HOME environment variable
@@ -36,13 +40,13 @@ commands:
       - run:
           name: Set up git repository
           command: |
-            if [ -e /home/app/current/.git ]
+            if [ -e << parameters.repo_path >>/.git ]
             then
-              cd /home/app/current
+              cd << parameters.repo_path >>
               git remote set-url origin "$CIRCLE_REPOSITORY_URL" || true
             else
-              mkdir -p /home/app/current
-              cd /home/app/current
+              mkdir -p << parameters.repo_path >>
+              cd << parameters.repo_path >>
               git clone --depth 1 "$CIRCLE_REPOSITORY_URL" .
             fi
       - run:
