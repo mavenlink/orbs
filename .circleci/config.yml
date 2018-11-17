@@ -39,4 +39,4 @@ jobs:
       - run: cp -r ~/.ssh ~/project
       - run: sed -i -e 's/$CIRCLE_SHA1/'$CIRCLE_SHA1'/g' src/git/config.yml
       - run: circleci config process src/git/config.yml > src/git/processed_config.yml
-      - run: circleci local execute -c src/git/processed_config.yml --env -e CHECKOUT_KEY=THISisAtestKEY
+      - run: circleci local execute -c src/git/processed_config.yml
