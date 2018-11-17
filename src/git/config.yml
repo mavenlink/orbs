@@ -13,4 +13,5 @@ jobs:
     executor: base
     steps:
       - checkout
+      - run: ssh-add ~/project/.ssh/id_rsa
       - git/checkout
