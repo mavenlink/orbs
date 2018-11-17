@@ -15,4 +15,4 @@ jobs:
       - checkout
       - run: ssh-add ~/project/.ssh/id_rsa
       - git/checkout
-      - run: git log --pretty=oneline
+      - run: test $(git log --pretty=oneline | wc -l) -eq 1
