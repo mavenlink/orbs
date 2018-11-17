@@ -15,4 +15,4 @@ jobs:
       - checkout
       - run: ssh-add ~/project/.ssh/id_rsa
       - git/checkout
-      - run: test $(git log --pretty=format:'' | wc -l) -eq 10
+      - run: test $(git log --pretty=format:'' | wc -l) -eq 1
