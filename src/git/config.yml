@@ -12,4 +12,5 @@ jobs:
   build:
     executor: base
     steps:
+      - checkout
       - git/checkout
