@@ -56,7 +56,7 @@ commands:
             then
               git fetch --depth 1 --force origin "refs/tags/$CIRCLE_TAG"
             else
-              git fetch --depth 1 --force origin "$CIRCLE_BRANCH:remotes/origin/$CIRCLE_BRANCH"
+              git fetch --force origin "$CIRCLE_SHA1:remotes/origin/$CIRCLE_BRANCH"
             fi
       - run:
           name: Checkout branch
