@@ -7,7 +7,7 @@ commands:
   checkout:
     parameters:
       repo_path:
-        default: /home/app/current
+        default: $CIRCLE_WORKING_DIRECTORY
         type: string
     steps:
       - run:
