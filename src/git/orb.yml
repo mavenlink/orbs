@@ -11,7 +11,7 @@ commands:
         type: string
     steps:
       - run:
-          name: Git Checkout
+          name: Git Shallow Checkout
           command: |
             # Workaround old docker images with incorrect $HOME
             # check https://github.com/docker/docker/issues/2968 for details
