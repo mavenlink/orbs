@@ -37,6 +37,7 @@ jobs:
       - cli/install
       - checkout
       - run: cp -r ~/.ssh ~/project
+      - run: git add --all
       - run: sed -i -e 's/$CIRCLE_SHA1/'$CIRCLE_SHA1'/g' src/git/config.yml
       - run: circleci config process src/git/config.yml > src/git/processed_config.yml
       - run: circleci local execute -c src/git/processed_config.yml | tee local_build_output.txt /dev/stderr | tail -n 1 | grep "Success"
