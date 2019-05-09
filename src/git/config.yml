@@ -14,8 +14,10 @@ jobs:
     steps:
       - checkout
       - run: ssh-add ~/project/.ssh/id_rsa
+      - run: mkdir ~/project-test-1 && cd ~/project-test-1
       - git/checkout
       - run: cd /home/app/current && test $(git rev-list --all --count) -eq 1
+      - run: mkdir ~/project-test-2 && cd ~/project-test-2
       - git/checkout:
           repo_path: /home/some/other/path
       - run: cd /home/some/other/path && test $(git rev-list --all --count) -eq 1
