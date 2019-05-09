@@ -19,9 +19,9 @@ jobs:
           # Default directory is /home/app/current
           cd /home/app/current
           # Since the repo has many git commits, it will fetch 5 commits on the branch plus the latest master
-          test $(git rev-list --count "$CIRCLE_BRANCH") -le 5
+          test $(git rev-list --count "$CIRCLE_BRANCH" .) -le 5
       - git/checkout:
           repo_path: /home/some/other/path
       - run: |
           cd /home/some/other/path
-          test $(git rev-list --count "$CIRCLE_BRANCH") -le 5
+          test $(git rev-list --count "$CIRCLE_BRANCH" .) -le 5
