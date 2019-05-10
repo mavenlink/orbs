@@ -6,6 +6,9 @@ description: |
 commands:
   checkout:
     parameters:
+      depth:
+        default: 1
+        type: integer
       repo_path:
         default: /home/app/current
         type: string
@@ -19,7 +22,7 @@ commands:
             then
               export HOME=$(getent passwd $(id -un) | cut -d: -f6)
             fi
-          
+
             # Set up SSH access
             mkdir -p ~/.ssh
 
@@ -30,12 +33,12 @@ commands:
             (umask 077; touch ~/.ssh/id_rsa)
             chmod 0600 ~/.ssh/id_rsa
             (cat $CHECKOUT_KEY > ~/.ssh/id_rsa)
-      
+
             # Set up git configuration
             # use git+ssh instead of https
             git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
             git config --global gc.auto 0 || true
-            
+
             # Set up git repository
             if [ -e << parameters.repo_path >>/.git ]
             then
@@ -44,17 +47,17 @@ commands:
             else
               mkdir -p << parameters.repo_path >>
               cd << parameters.repo_path >>
-              git clone --depth 1 "$CIRCLE_REPOSITORY_URL" .
+              git clone --depth << parameters.depth >> "$CIRCLE_REPOSITORY_URL" .
             fi
-            
+
             # Fetch git origin remote
             if [ -n "$CIRCLE_TAG" ]
             then
-              git fetch --depth 1 --force origin "refs/tags/$CIRCLE_TAG"
+              git fetch --depth << parameters.depth >> --force origin "refs/tags/$CIRCLE_TAG"
             else
-              git fetch --depth 5 --force origin "$CIRCLE_BRANCH:remotes/origin/$CIRCLE_BRANCH"
+              git fetch --depth << parameters.depth >> --force origin "$CIRCLE_BRANCH:remotes/origin/$CIRCLE_BRANCH"
             fi
-      
+
             # Checkout branch
             if [ -n "$CIRCLE_TAG" ]
             then

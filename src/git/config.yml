@@ -22,10 +22,10 @@ jobs:
           # Actual
           git rev-list --count "$CIRCLE_BRANCH" .
           # Assertion
-          test $(git rev-list --count "$CIRCLE_BRANCH" .) -le 6
+          test $(git rev-list --count "$CIRCLE_BRANCH" .) -eq 1
       - git/checkout:
           repo_path: /home/some/other/path
       - run: |
           cd /home/some/other/path
           git rev-list --count "$CIRCLE_BRANCH" .
-          test $(git rev-list --count "$CIRCLE_BRANCH" .) -le 6
+          test $(git rev-list --count "$CIRCLE_BRANCH" .) -eq 1
