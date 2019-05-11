@@ -8,9 +8,13 @@ commands:
     parameters:
       depth:
         default: 1
+        description: >
+          Limit fetching to the specified number of commits from the tip of each remote branch history.
+          See git fetch documentation for more information.
         type: integer
       repo_path:
         default: $CIRCLE_WORKING_DIRECTORY
+        description: Checkout code into a specified directory.
         type: string
     steps:
       - run:
