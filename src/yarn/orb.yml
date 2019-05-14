@@ -16,7 +16,7 @@ commands:
         type: string
       freeze:
         default: true
-        descriptions: >
+        description: >
           Passes the `--frozen-lockfile` flag to Yarn.
           Useful for ensuring CI is running with specified dependencies in lockfile.
         type: boolean
