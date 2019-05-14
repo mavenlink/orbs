@@ -1,0 +1,33 @@
+version: 2.1
+
+description: >
+  A set of tools for optimizing Yarn operations in a workflow.
+
+commands:
+  install:
+    description: >
+      Install Yarn dependencies with smart caching and validations.
+    parameters:
+      label:
+        description: >
+          User-defined identifier to group caches.
+          Commonly used as a cache bust key.
+          e.g. some_linux_21
+        type: string
+      freeze:
+        default: true
+        descriptions: >
+          Passes the `--frozen-lockfile` flag to Yarn.
+          Useful for ensuring CI is running with specified dependencies in lockfile.
+        type: boolean
+    steps:
+      - restore_cache:
+          keys:
+            - &yarn_key yarn-<< parameters.label >>-{{ checksum "package.json" }}
+            - yarn-<< parameters.label >>
+      - run: yarn install <<# parameters.freeze >>--frozen-lockfile<</ parameters.freeze >>
+      - save_cache:
+          paths:
+            - ~/.cache
+            - node_modules
+          key: *yarn_key

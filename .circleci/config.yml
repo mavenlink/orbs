@@ -14,6 +14,12 @@ workflows:
       - git-integration-test:
           requires:
             - git-publish-sha
+  yarn:
+    jobs:
+      - yarn-schema-validation
+      - yarn-publish-sha:
+          requires:
+            - yarn-schema-validation
 
 jobs:
   git-schema-validation:
@@ -41,3 +47,17 @@ jobs:
       - run: sed -i -e 's/$CIRCLE_SHA1/'$CIRCLE_SHA1'/g' src/git/config.yml
       - run: circleci config process src/git/config.yml > src/git/processed_config.yml
       - run: circleci local execute -c src/git/processed_config.yml | tee local_build_output.txt /dev/stderr | tail -n 1 | grep "Success"
+  yarn-schema-validation:
+    executor: cli/default
+    steps:
+      - checkout
+      - orb-tools/validate:
+          orb-path: src/yarn/orb.yml
+  yarn-publish-sha:
+    executor: cli/default
+    steps:
+      - checkout
+      - orb-tools/publish:
+          orb-path: src/yarn/orb.yml
+          orb-ref: mavenlink/yarn@dev:$CIRCLE_SHA1
+          token-variable: $ORB_PUBLISHING_TOKEN
