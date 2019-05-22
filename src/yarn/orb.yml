@@ -31,7 +31,8 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - &yarn_key yarn-<< parameters.label >>-{{ checksum "package.json" }}
+            - &yarn_key yarn-<< parameters.label >>-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+            - yarn-<< parameters.label >>-{{ checksum "package.json" }}
             - yarn-<< parameters.label >>
       - run: yarn install <<# parameters.freeze >>--frozen-lockfile<</ parameters.freeze >>
       - save_cache:
