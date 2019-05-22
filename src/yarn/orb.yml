@@ -1,0 +1,42 @@
+version: 2.1
+
+description: >
+  A set of tools for optimizing Yarn operations in a workflow.
+
+commands:
+  install:
+    description: >
+      Install Yarn dependencies with smart caching and validations.
+    parameters:
+      label:
+        default: cache-default-version
+        description: >
+          User-defined identifier to group caches.
+          Commonly used as a cache bust key.
+          e.g. some_linux_21
+        type: string
+      freeze:
+        default: true
+        description: >
+          Passes the `--frozen-lockfile` flag to Yarn.
+          Useful for ensuring CI is running with specified dependencies in lockfile.
+        type: boolean
+      repo_path:
+        default: $CIRCLE_WORKING_DIRECTORY
+        description: >
+          Yarn install from a specified directory.
+          Use of this parameter is discouraged.
+          See $CIRCLE_WORKING_DIRECTORY documentation for more information.
+        type: string
+    steps:
+      - restore_cache:
+          keys:
+            - &yarn_key yarn-<< parameters.label >>-{{ checksum "<< parameters.repo_path >>/package.json" }}-{{ checksum "<< parameters.repo_path >>/yarn.lock" }}
+            - yarn-<< parameters.label >>-{{ checksum "<< parameters.repo_path >>/package.json" }}
+            - yarn-<< parameters.label >>
+      - run: yarn install <<# parameters.freeze >>--frozen-lockfile<</ parameters.freeze >>
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+          key: *yarn_key

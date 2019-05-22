@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  yarn: mavenlink/yarn@dev:$CIRCLE_SHA1
+
+executors:
+  base:
+    docker:
+      - image: circleci/node:8.11.1
+
+jobs:
+  build:
+    executor: base
+    steps:
+      - checkout
+      - yarn/install:
+          repo_path: ~/project/src/yarn/test-default
+      - run: |
+          cd ~/project/src/yarn/test-default
+          yarn check
