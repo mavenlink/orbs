@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - yarn/install:
-          repo_path: ~/src/yarn/test-default
+          repo_path: ~/project/src/yarn/test-default
       - run: |
-          cd ~/src/yarn/test-default
+          cd ~/project/src/yarn/test-default
           yarn check
