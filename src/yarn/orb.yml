@@ -9,6 +9,7 @@ commands:
       Install Yarn dependencies with smart caching and validations.
     parameters:
       label:
+        default: 1
         description: >
           User-defined identifier to group caches.
           Commonly used as a cache bust key.
