@@ -13,4 +13,5 @@ jobs:
     executor: base
     steps:
       - checkout
-      - yarn/install
+      - yarn/install:
+          repo_path: ~/src/yarn/test-1

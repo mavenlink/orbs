@@ -21,6 +21,13 @@ commands:
           Passes the `--frozen-lockfile` flag to Yarn.
           Useful for ensuring CI is running with specified dependencies in lockfile.
         type: boolean
+      repo_path:
+        default: $CIRCLE_WORKING_DIRECTORY
+        description: >
+          Yarn install from a specified directory.
+          Use of this parameter is discouraged.
+          See $CIRCLE_WORKING_DIRECTORY documentation for more information.
+        type: string
     steps:
       - restore_cache:
           keys:
