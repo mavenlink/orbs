@@ -37,6 +37,6 @@ commands:
       - run: yarn install <<# parameters.freeze >>--frozen-lockfile<</ parameters.freeze >>
       - save_cache:
           paths:
-            - ~/.cache
+            - ~/.cache/yarn
             - node_modules
           key: *yarn_key
